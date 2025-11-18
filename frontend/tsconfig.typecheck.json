@@ -3,13 +3,6 @@
   "compilerOptions": {
     "skipLibCheck": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "build",
-    "dist",
-    "coverage",
-    "node_modules",
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["build", "dist", "coverage", "node_modules"]
 }
