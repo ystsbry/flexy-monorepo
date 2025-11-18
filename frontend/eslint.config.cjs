@@ -1,19 +1,19 @@
 // eslint.config.cjs
-const globals = require('globals')
-const tsPlugin = require('@typescript-eslint/eslint-plugin')
-const tsParser = require('@typescript-eslint/parser')
-const solidPlugin = require('eslint-plugin-solid')
+const globals = require("globals");
+const tsPlugin = require("@typescript-eslint/eslint-plugin");
+const tsParser = require("@typescript-eslint/parser");
+const solidPlugin = require("eslint-plugin-solid");
 
 module.exports = [
   {
-    files: ['src/**/*.{ts,tsx}'],
+    files: ["src/**/*.{ts,tsx}"],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
         project: true,
         tsconfigRootDir: __dirname,
         ecmaVersion: 2021,
-        sourceType: 'module',
+        sourceType: "module",
       },
       globals: {
         ...globals.browser,
@@ -21,14 +21,13 @@ module.exports = [
       },
     },
     plugins: {
-      '@typescript-eslint': tsPlugin,
+      "@typescript-eslint": tsPlugin,
       solid: solidPlugin,
     },
     rules: {
-      'solid/jsx-no-undef': 'error',
-      'solid/no-innerhtml': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      "solid/jsx-no-undef": "error",
+      "solid/no-innerhtml": "warn",
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     },
   },
-]
-
+];
