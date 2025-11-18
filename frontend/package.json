@@ -10,7 +10,9 @@
     "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
     "lint:debug": "eslint \"src/**/*.{ts,tsx}\" --debug --no-ignore",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "deps:check": "pnpm dlx npm-check-updates",
+    "deps:check:strict": "pnpm dlx npm-check-updates --errorLevel 2"
   },
   "dependencies": {
     "@kobalte/core": "^0.13.11",

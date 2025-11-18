@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Dependency check (ncu)
+        run: pnpm deps:check
+
       - name: Lint
         run: pnpm lint
       
