@@ -16,16 +16,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.19.0
+          run_install: false
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      
+      - name: Restore Vinxi build cache
+        uses: actions/cache@v4
         with:
-          version: 10.19.0
+          path: frontend/.vinxi
+          key: ${{ runner.os }}-vinxi-${{ hashFiles('frontend/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-vinxi-
 
       - name: Install dependencies
         run: pnpm install
