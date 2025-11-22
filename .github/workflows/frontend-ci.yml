@@ -3,7 +3,7 @@ name: frontend CI
 on:
   pull_request:
     paths:
-      - 'frontend/**'
+      - 'supplier-console/frontend/**'
 
 jobs:
   test:
