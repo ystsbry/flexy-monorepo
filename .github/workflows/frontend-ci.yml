@@ -3,7 +3,7 @@ name: frontend CI
 on:
   pull_request:
     paths:
-      - 'frontend/**'
+      - 'supplier-console/frontend/**'
 
 jobs:
   test:
@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./supplier-console/frontend
 
     steps:
       - name: Checkout
@@ -28,12 +28,12 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: frontend/pnpm-lock.yaml
+          cache-dependency-path: supplier-console/frontend/pnpm-lock.yaml
       
       - name: Restore Vinxi build cache
         uses: actions/cache@v4
         with:
-          path: frontend/.vinxi
+          path: supplier-console/frontend/.vinxi
           key: ${{ runner.os }}-vinxi-${{ hashFiles('frontend/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-vinxi-
