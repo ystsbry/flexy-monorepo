@@ -1,17 +1,18 @@
 {
-  "name": "{{name_of_lib}}",
+  "name": "hp-rendering-engine",
   "version": "0.0.0",
   "description": "{{desc_of_lib}}",
   "license": "MIT",
-  "author": "{{me}}",
+  "author": "ystsbry",
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/{{me}}/{{name_of_lib}}.git"
+    "url": "git+https://github.com/ystsbry/flexy-monorepo.git",
+    "directory": "hp-rendering-engine"
   },
-  "homepage": "https://github.com/{{me}}/{{name_of_lib}}#readme",
+  "homepage": "https://github.com/ystsbry/flexy-monorepo/hp-rendering-engine#readme",
   "bugs": {
-    "url": "https://github.com/{{me}}/{{name_of_lib}}/issues"
+    "url": "https://github.com/ystsbry/flexy-monorepo/issues"
   },
   "files": [
     "dist"
