@@ -36,7 +36,10 @@ jobs:
         run: pnpm install
 
       - name: Lint
-        run: pnpm lint
+        run: pnpm lint:code
+
+      - name: Typecheck
+        run: pnpm lint:types
 
       - name: Format check
         run: pnpm format:check
