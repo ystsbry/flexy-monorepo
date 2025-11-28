@@ -8,7 +8,7 @@ on:
       - 'hp-rendering-engine/**'
 
 jobs:
-  format:
+  static-analysis:
     runs-on: ubuntu-24.04
 
     defaults:
