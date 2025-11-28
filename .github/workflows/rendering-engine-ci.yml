@@ -1,0 +1,80 @@
+name: RenderingEngine - CI
+
+on:
+  pull_request:
+    branches:
+      - main  
+    paths:
+      - 'hp-rendering-engine/**'
+
+jobs:
+  static-analysis:
+    runs-on: ubuntu-24.04
+
+    defaults:
+      run:
+        working-directory: ./hp-rendering-engine
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.19.0
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: hp-rendering-engine/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint
+        run: pnpm lint:code
+
+      - name: Typecheck
+        run: pnpm lint:types
+
+      - name: Format check
+        run: pnpm format:check
+  
+  build-and-test:
+    runs-on: ubuntu-24.04
+
+    defaults:
+      run:
+        working-directory: ./hp-rendering-engine
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.19.0
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: hp-rendering-engine/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm test
+        env:
+          CI: true
