@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitest/config'
 import solidPlugin from 'vite-plugin-solid'
+import { vanillaExtractPlugin } from "@vanilla-extract/esbuild-plugin"
 
 export default defineConfig(({ mode }) => {
   // to test in server environment, run with "--mode ssr" or "--mode test:ssr" flag
@@ -14,6 +15,7 @@ export default defineConfig(({ mode }) => {
         // For testing SSR we need to do a SSR JSX transform
         solid: { generate: testSSR ? 'ssr' : 'dom' },
       }),
+      vanillaExtractPlugin(),
     ],
     test: {
       watch: false,
