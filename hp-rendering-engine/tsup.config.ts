@@ -1,5 +1,6 @@
 import { defineConfig } from 'tsup'
 import * as preset from 'tsup-preset-solid'
+import { vanillaExtractPlugin } from "@vanilla-extract/esbuild-plugin"
 
 const preset_options: preset.PresetOptions = {
   // array or single object
@@ -16,6 +17,7 @@ const preset_options: preset.PresetOptions = {
   drop_console: true,
   // Set to `true` to generate a CommonJS build alongside ESM
   // cjs: true,
+  esbuild_plugins: [vanillaExtractPlugin()],
 }
 
 const CI =
