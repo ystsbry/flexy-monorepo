@@ -16,6 +16,12 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": [],
+    "paths": {
+      "@config-schema": ["./src/config-schema"],
+      "@parts": ["./src/parts"],
+      "@parts/shared/*": ["./src/parts/_shared/*"],
+      "@src/*": ["./src/*"]
+    }
   },
   "exclude": ["node_modules", "dist", "./dev"]
 }

@@ -99,5 +99,9 @@
   "engines": {
     "node": ">=18",
     "pnpm": ">=9.0.0"
+  },
+  "dependencies": {
+    "@vanilla-extract/dynamic": "^2.1.5",
+    "zod": "^4.1.13"
   }
 }

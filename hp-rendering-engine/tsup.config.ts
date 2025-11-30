@@ -1,6 +1,7 @@
 import { defineConfig } from 'tsup'
 import * as preset from 'tsup-preset-solid'
 import { vanillaExtractPlugin } from "@vanilla-extract/esbuild-plugin"
+import path from "path"
 
 const preset_options: preset.PresetOptions = {
   // array or single object
@@ -18,6 +19,17 @@ const preset_options: preset.PresetOptions = {
   // Set to `true` to generate a CommonJS build alongside ESM
   // cjs: true,
   esbuild_plugins: [vanillaExtractPlugin()],
+  
+  modify_esbuild_options(esbuild_options, _permutation) {
+    esbuild_options.alias = {
+      "@config-schema": path.resolve(__dirname, "src/config-schema"),
+      "@parts": path.resolve(__dirname, "src/parts"),
+      "@parts/shared/*": path.resolve(__dirname, "src/parts/_shared/*"),
+      "@src": path.resolve(__dirname, "src"),
+    };
+
+    return esbuild_options
+  }
 }
 
 const CI =

@@ -1,3 +1,4 @@
+import path from "path";
 import { defineConfig } from 'vitest/config'
 import solidPlugin from 'vite-plugin-solid'
 import { vanillaExtractPlugin } from "@vanilla-extract/esbuild-plugin"
@@ -39,6 +40,12 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       conditions: testSSR ? ['node'] : ['browser', 'development'],
+      alias: {
+        "@config-schema": path.resolve(__dirname, "src/config-schema"),
+        "@parts": path.resolve(__dirname, "src/parts"),
+        "@parts/shared/*": path.resolve(__dirname, "src/parts/_shared"),
+        "@src": path.resolve(__dirname, "src"),
+      },
     },
   }
 })
