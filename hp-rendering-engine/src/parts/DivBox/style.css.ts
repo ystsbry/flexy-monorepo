@@ -1,5 +1,5 @@
-import { style, createVar } from "@vanilla-extract/css"
-import { mediaQuery } from "@parts/shared/responsive";
+import { style, createVar } from '@vanilla-extract/css'
+import { mediaQuery } from '@parts/shared/responsive'
 
 export namespace CssVars {
   export const widthBaseVar = createVar()
@@ -44,13 +44,13 @@ export namespace Style {
     width: CssVars.widthBaseVar,
     height: CssVars.heightBaseVar,
 
-    position: "absolute",
+    position: 'absolute',
     top: CssVars.topBaseVar,
     left: CssVars.leftBaseVar,
     right: CssVars.rightBaseVar,
     bottom: CssVars.bottomBaseVar,
 
-    "@media": {
+    '@media': {
       [mediaQuery.sm]: {
         width: CssVars.widthSmVar,
         height: CssVars.heightSmVar,

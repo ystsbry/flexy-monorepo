@@ -1,7 +1,7 @@
-import { z } from "zod";
+import { z } from 'zod'
 
-export const breakpoints = ["base", "sm", "md", "lg"] as const;
-export type Breakpoint = (typeof breakpoints)[number];
+export const breakpoints = ['base', 'sm', 'md', 'lg'] as const
+export type Breakpoint = (typeof breakpoints)[number]
 
 export const ResponsiveNumberSchema = z.union([
   z.number(),
@@ -11,21 +11,19 @@ export const ResponsiveNumberSchema = z.union([
     md: z.number().optional(),
     lg: z.number().optional(),
   }),
-]);
-export type ResponsiveNumber = z.infer<typeof ResponsiveNumberSchema>;
+])
+export type ResponsiveNumber = z.infer<typeof ResponsiveNumberSchema>
 
 export const mediaQuery = {
-  sm: "screen and (min-width: 640px)",
-  md: "screen and (min-width: 768px)",
-  lg: "screen and (min-width: 1024px)",
-};
+  sm: 'screen and (min-width: 640px)',
+  md: 'screen and (min-width: 768px)',
+  lg: 'screen and (min-width: 1024px)',
+}
 
-export const responsiveZodSchema = <T extends z.ZodTypeAny>(schema: T) => 
+export const responsiveZodSchema = <T extends z.ZodTypeAny>(schema: T) =>
   z.object({
     base: schema,
     sm: schema,
     md: schema,
     lg: schema,
-  });
-
-  
+  })

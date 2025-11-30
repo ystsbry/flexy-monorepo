@@ -1,5 +1,5 @@
 type Styles = {
-  [cssVarName: string]: string;
-};
+  [cssVarName: string]: string
+}
 
-export type StyleConfigApplier<C> = (config: C) => Styles;
+export type StyleConfigApplier<C> = (config: C) => Styles

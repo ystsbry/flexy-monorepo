@@ -1,33 +1,30 @@
-import { Style } from "./style.css";
-import { Contract } from "./contract";
-import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { CssVars } from "./style.css";
-import type { StyleConfigApplier } from "@parts/shared/styleConfigApplier";
-import { PartWithChildren } from "@parts/shared/partDefinition";
+import { Style } from './style.css'
+import { Contract } from './contract'
+import { assignInlineVars } from '@vanilla-extract/dynamic'
+import { CssVars } from './style.css'
+import type { StyleConfigApplier } from '@parts/shared/styleConfigApplier'
+import { PartWithChildren } from '@parts/shared/partDefinition'
 
-export const DivBox: PartWithChildren<Contract.Config> = (props) => {
-  const { children, ...config } = props;
+export const DivBox: PartWithChildren<Contract.Config> = props => {
+  const { children, ...config } = props
 
   return (
-    <div
-      class={Style.divBox}
-      style={applyStyleConfig(config)}
-    >
+    <div class={Style.divBox} style={applyStyleConfig(config)}>
       {children}
     </div>
-  );
-};
+  )
+}
 
-export const applyStyleConfig: StyleConfigApplier<Contract.Config> = (config) => {
-  const base = config.layout.base;
-  const sm = config.layout.sm;
-  const md = config.layout.md;
-  const lg = config.layout.lg;
+export const applyStyleConfig: StyleConfigApplier<Contract.Config> = config => {
+  const base = config.layout.base
+  const sm = config.layout.sm
+  const md = config.layout.md
+  const lg = config.layout.lg
 
   return assignInlineVars({
     // Style
     [CssVars.opacityVar]: String(config.style.opacity ?? 1),
-    [CssVars.backgroundColorVar]: config.style.backgroundColor || "transparent",
+    [CssVars.backgroundColorVar]: config.style.backgroundColor || 'transparent',
 
     // Layout
     [CssVars.widthBaseVar]: px(base.width),
@@ -64,4 +61,4 @@ export const applyStyleConfig: StyleConfigApplier<Contract.Config> = (config) =>
   })
 }
 
-const px = (v?: number) => (typeof v === "number" ? `${v}px` : undefined);
+const px = (v?: number) => (typeof v === 'number' ? `${v}px` : undefined)
