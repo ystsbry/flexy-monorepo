@@ -1,14 +1,16 @@
 import { JSX, ParentProps } from 'solid-js'
 import type { ZodType } from 'zod'
 
-export interface BasePartComponent<C, HasChildren extends boolean = true> {
+export type PartConfig = Record<string, unknown>
+
+export interface BasePartComponent<C extends PartConfig, HasChildren extends boolean = true> {
   (props: HasChildren extends true ? ParentProps<C> : C): JSX.Element
 }
 
-export type PartWithChildren<C> = BasePartComponent<C, true>
-export type PartWithoutChildren<C> = BasePartComponent<C, false>
+export type PartWithChildren<C extends PartConfig> = BasePartComponent<C, true>
+export type PartWithoutChildren<C extends PartConfig> = BasePartComponent<C, false>
 
-export interface PartDefinition<C, S extends ZodType<C>> {
+export interface PartDefinition<C extends PartConfig, S extends ZodType<C>> {
   type: string
   schema: S
   Component: BasePartComponent<C>
