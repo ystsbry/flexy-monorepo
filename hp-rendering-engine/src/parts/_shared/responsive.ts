@@ -20,10 +20,10 @@ export const mediaQuery = {
   lg: 'screen and (min-width: 1024px)',
 }
 
-export const responsiveZodSchema = <T extends z.ZodTypeAny>(schema: T) =>
+export const responsiveZodSchema = <T extends z.ZodType>(schema: T) =>
   z.object({
     base: schema,
-    sm: schema,
-    md: schema,
-    lg: schema,
+    sm: schema.optional(),
+    md: schema.optional(),
+    lg: schema.optional(),
   })

@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       conditions: testSSR ? ['node'] : ['browser', 'development'],
       alias: {
-        "@config-schema": path.resolve(__dirname, "src/config-schema"),
+        "@configure": path.resolve(__dirname, "src/configure"),
         "@parts": path.resolve(__dirname, "src/parts"),
         "@parts/shared/*": path.resolve(__dirname, "src/parts/_shared"),
         "@src": path.resolve(__dirname, "src"),

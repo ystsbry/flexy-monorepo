@@ -1,9 +1,10 @@
 import { z } from 'zod'
 import { responsiveZodSchema } from '@parts/shared/responsive'
+import { Refinement, rulesRegister } from '@src/configure/contract'
 
 export namespace Contract {
   export const StyleSchema = z.object({
-    opacity: z.float32().optional(),
+    opacity: z.number().min(0).max(1).optional(),
     backgroundColor: z
       .union([
         z.string().regex(/^#/), // hex
@@ -15,25 +16,62 @@ export namespace Contract {
   export type Style = z.infer<typeof StyleSchema>
 
   const PositionSchema = z.object({
-    top: z.number(),
-    left: z.number(),
-    bottom: z.number().optional(),
-    right: z.number().optional(),
+    top: z.number().nonnegative(),
+    left: z.number().nonnegative(),
+    bottom: z.number().nonnegative().optional(),
+    right: z.number().nonnegative().optional(),
   })
   export type Position = z.infer<typeof PositionSchema>
 
-  export const LayoutSchema = responsiveZodSchema(
-    z.object({
-      width: z.number().optional(),
-      height: z.number().optional(),
+  const SizeSchema = z.object({
+    width: z.number().nonnegative().optional(),
+    height: z.number().nonnegative().optional(),
+  })
+  export type Size = z.infer<typeof SizeSchema>
+
+  const layoutRules: Refinement<Layout>[] = [
+    {
+      rule: (arg: Layout) =>
+        !(
+          typeof arg.position.left === 'number' &&
+          typeof arg.position.right === 'number' &&
+          typeof arg.size.width === 'number'
+        ),
+      issue: {
+        code: 'custom',
+        message: 'Invalid layout configuration',
+        path: [],
+      },
+    },
+    {
+      rule: (arg: Layout) =>
+        !(
+          typeof arg.position.top === 'number' &&
+          typeof arg.position.bottom === 'number' &&
+          typeof arg.size.height === 'number'
+        ),
+      issue: {
+        code: 'custom',
+        message: 'Invalid layout configuration',
+        path: [],
+      },
+    },
+  ]
+
+  const LayoutSchema = z
+    .object({
+      size: SizeSchema,
       position: PositionSchema,
-    }),
-  )
+    })
+    .superRefine(rulesRegister(layoutRules))
   export type Layout = z.infer<typeof LayoutSchema>
+
+  export const ResponsiveLayoutSchema = responsiveZodSchema(LayoutSchema)
+  export type ResponsiveLayout = z.infer<typeof ResponsiveLayoutSchema>
 
   export const ConfigSchema = z.object({
     style: StyleSchema,
-    layout: LayoutSchema,
+    layout: ResponsiveLayoutSchema,
   })
   export type Config = z.infer<typeof ConfigSchema>
 }

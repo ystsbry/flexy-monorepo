@@ -17,7 +17,7 @@
     "jsxImportSource": "solid-js",
     "types": [],
     "paths": {
-      "@config-schema": ["./src/config-schema"],
+      "@configure": ["./src/configure"],
       "@parts": ["./src/parts"],
       "@parts/shared/*": ["./src/parts/_shared/*"],
       "@src/*": ["./src/*"]
