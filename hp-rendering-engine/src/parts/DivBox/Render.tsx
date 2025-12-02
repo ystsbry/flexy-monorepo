@@ -27,37 +27,37 @@ export const applyStyleConfig: StyleConfigApplier<Contract.Config> = config => {
     [CssVars.backgroundColorVar]: config.style.backgroundColor || 'transparent',
 
     // Layout
-    [CssVars.widthBaseVar]: px(base.width),
-    [CssVars.heightBaseVar]: px(base.height),
+    [CssVars.widthBaseVar]: px(base.size.width),
+    [CssVars.heightBaseVar]: px(base.size.height),
 
     [CssVars.topBaseVar]: px(base.position.top),
     [CssVars.leftBaseVar]: px(base.position.left),
     [CssVars.rightBaseVar]: px(base.position.right),
     [CssVars.bottomBaseVar]: px(base.position.bottom),
 
-    [CssVars.widthSmVar]: px(sm.width),
-    [CssVars.heightSmVar]: px(sm.height),
+    [CssVars.widthSmVar]: px(sm?.size.width),
+    [CssVars.heightSmVar]: px(sm?.size.height),
 
-    [CssVars.topSmVar]: px(sm.position.top),
-    [CssVars.leftSmVar]: px(sm.position.left),
-    [CssVars.rightSmVar]: px(sm.position.right),
-    [CssVars.bottomSmVar]: px(sm.position.bottom),
+    [CssVars.topSmVar]: px(sm?.position.top),
+    [CssVars.leftSmVar]: px(sm?.position.left),
+    [CssVars.rightSmVar]: px(sm?.position.right),
+    [CssVars.bottomSmVar]: px(sm?.position.bottom),
 
-    [CssVars.widthMdVar]: px(md.width),
-    [CssVars.heightMdVar]: px(md.height),
+    [CssVars.widthMdVar]: px(md?.size.width),
+    [CssVars.heightMdVar]: px(md?.size.height),
 
-    [CssVars.topMdVar]: px(md.position.top),
-    [CssVars.leftMdVar]: px(md.position.left),
-    [CssVars.rightMdVar]: px(md.position.right),
-    [CssVars.bottomMdVar]: px(md.position.bottom),
+    [CssVars.topMdVar]: px(md?.position.top),
+    [CssVars.leftMdVar]: px(md?.position.left),
+    [CssVars.rightMdVar]: px(md?.position.right),
+    [CssVars.bottomMdVar]: px(md?.position.bottom),
 
-    [CssVars.widthLgVar]: px(lg.width),
-    [CssVars.heightLgVar]: px(lg.height),
+    [CssVars.widthLgVar]: px(lg?.size.width),
+    [CssVars.heightLgVar]: px(lg?.size.height),
 
-    [CssVars.topLgVar]: px(lg.position.top),
-    [CssVars.leftLgVar]: px(lg.position.left),
-    [CssVars.rightLgVar]: px(lg.position.right),
-    [CssVars.bottomLgVar]: px(lg.position.bottom),
+    [CssVars.topLgVar]: px(lg?.position.top),
+    [CssVars.leftLgVar]: px(lg?.position.left),
+    [CssVars.rightLgVar]: px(lg?.position.right),
+    [CssVars.bottomLgVar]: px(lg?.position.bottom),
   })
 }
 

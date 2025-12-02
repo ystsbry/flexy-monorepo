@@ -13,23 +13,31 @@ type Story = StoryObj<typeof DivBox>
 
 const baseLayout: Contract.Config['layout'] = {
   base: {
-    width: 240,
-    height: 120,
+    size: {
+      width: 240,
+      height: 120,
+    },
     position: { top: 40, left: 40 },
   },
   sm: {
-    width: 240,
-    height: 120,
+    size: {
+      width: 240,
+      height: 120,
+    },
     position: { top: 40, left: 40 },
   },
   md: {
-    width: 260,
-    height: 140,
+    size: {
+      width: 260,
+      height: 140,
+    },
     position: { top: 60, left: 60 },
   },
   lg: {
-    width: 280,
-    height: 160,
+    size: {
+      width: 280,
+      height: 160,
+    },
     position: { top: 80, left: 80 },
   },
 }

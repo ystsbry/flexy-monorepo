@@ -25,7 +25,7 @@ const config: StorybookConfig = {
       ],
       resolve: {
         alias: [
-          { find: "@config-schema", replacement: path.resolve(root, "src/config-schema") },
+          { find: "@configure", replacement: path.resolve(root, "src/configure") },
           { find: "@parts/shared", replacement: path.resolve(root, "src/parts/_shared") },
           { find: "@parts", replacement: path.resolve(root, "src/parts") },
           { find: "@src", replacement: path.resolve(root, "src") },

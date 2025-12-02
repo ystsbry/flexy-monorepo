@@ -22,7 +22,7 @@ const preset_options: preset.PresetOptions = {
   
   modify_esbuild_options(esbuild_options, _permutation) {
     esbuild_options.alias = {
-      "@config-schema": path.resolve(__dirname, "src/config-schema"),
+      "@configure": path.resolve(__dirname, "src/configure"),
       "@parts": path.resolve(__dirname, "src/parts"),
       "@parts/shared/*": path.resolve(__dirname, "src/parts/_shared/*"),
       "@src": path.resolve(__dirname, "src"),
