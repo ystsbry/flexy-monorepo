@@ -3,7 +3,7 @@ import { responsiveZodSchema } from '@parts/shared/responsive'
 import { Refinement, rulesRegister } from '@src/configure/contract'
 
 export namespace Contract {
-  export const StyleSchema = z.object({
+  export const VisualSchema = z.object({
     opacity: z.number().min(0).max(1).optional(),
     backgroundColor: z
       .union([
@@ -13,7 +13,7 @@ export namespace Contract {
       ])
       .optional(),
   })
-  export type Style = z.infer<typeof StyleSchema>
+  export type Visual = z.infer<typeof VisualSchema>
 
   const PositionSchema = z.object({
     top: z.number().nonnegative(),
@@ -69,9 +69,34 @@ export namespace Contract {
   export const ResponsiveLayoutSchema = responsiveZodSchema(LayoutSchema)
   export type ResponsiveLayout = z.infer<typeof ResponsiveLayoutSchema>
 
-  export const ConfigSchema = z.object({
-    style: StyleSchema,
+  export const StyleSchema = z.object({
+    visual: VisualSchema,
     layout: ResponsiveLayoutSchema,
+  })
+  export type Style = z.infer<typeof StyleSchema>
+
+  const attributeRules: Refinement<Attribute>[] = [
+    {
+      rule: (arg: Attribute) => !(arg.isLinkEnabled && typeof arg.link === 'string'),
+      issue: {
+        code: 'custom',
+        message: 'Link is enabled but link URL is not provided',
+      },
+    },
+  ]
+
+  export const attributeSchema = z
+    .object({
+      type: z.enum(['div', 'main', 'section', 'article', 'header', 'footer']),
+      isLinkEnabled: z.boolean(),
+      link: z.url().optional(),
+    })
+    .superRefine(rulesRegister(attributeRules))
+  export type Attribute = z.infer<typeof attributeSchema>
+
+  export const ConfigSchema = z.object({
+    attribute: attributeSchema,
+    style: StyleSchema,
   })
   export type Config = z.infer<typeof ConfigSchema>
 }

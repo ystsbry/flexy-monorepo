@@ -2,30 +2,44 @@ import { Style } from './style.css'
 import { Contract } from './contract'
 import { assignInlineVars } from '@vanilla-extract/dynamic'
 import { cssVars } from './style.css'
-import type { StyleConfigApplier } from '@parts/shared/styleConfigApplier'
+import { px, type StyleConfigApplier } from '@parts/shared/styleConfigApplier'
 import { PartWithChildren } from '@parts/shared/partDefinition'
-import { splitProps } from 'solid-js'
+import { JSX, splitProps } from 'solid-js'
+import { Dynamic } from 'solid-js/web'
 
-export const DivBox: PartWithChildren<Contract.Config> = props => {
+export const Box: PartWithChildren<Contract.Config> = props => {
   const [local, config] = splitProps(props, ['children'])
 
-  return (
-    <div class={Style.divBox} style={applyStyleConfig(config)}>
+  const tag = config.attribute.type
+  const hasLink = typeof config.attribute.link === 'string'
+
+  const maybeLink = wrapIf(config.attribute.isLinkEnabled && hasLink, children => (
+    <a href={config.attribute.link} class={Style.box} style={applyStyleConfig(config.style)}>
+      {children}
+    </a>
+  ))
+
+  return maybeLink(
+    <Dynamic component={tag} class={Style.box} style={applyStyleConfig(config.style)}>
       {local.children}
-    </div>
+    </Dynamic>,
   )
 }
 
-export const applyStyleConfig: StyleConfigApplier<Contract.Config> = config => {
-  const base = config.layout.base
-  const sm = config.layout.sm
-  const md = config.layout.md
-  const lg = config.layout.lg
+const wrapIf =
+  (cond: boolean, wrapper: (children: JSX.Element) => JSX.Element) => (children: JSX.Element) =>
+    cond ? wrapper(children) : children
+
+export const applyStyleConfig: StyleConfigApplier<Contract.Style> = style => {
+  const base = style.layout.base
+  const sm = style.layout.sm
+  const md = style.layout.md
+  const lg = style.layout.lg
 
   return assignInlineVars({
     // Style
-    [cssVars.style.opacity]: String(config.style.opacity ?? 1),
-    [cssVars.style.backgroundColor]: config.style.backgroundColor || 'transparent',
+    [cssVars.visual.opacity]: String(style.visual.opacity ?? 1),
+    [cssVars.visual.backgroundColor]: style.visual.backgroundColor || 'transparent',
 
     // Layout
     // base
@@ -65,5 +79,3 @@ export const applyStyleConfig: StyleConfigApplier<Contract.Config> = config => {
     [cssVars.layout.lg.position.bottom]: px(lg?.position.bottom),
   })
 }
-
-const px = (v?: number) => (typeof v === 'number' ? `${v}px` : undefined)

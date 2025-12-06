@@ -15,21 +15,21 @@ const layoutCssVars = responsiveCssVars<Contract.Layout>({
   },
 })
 
-const styleCssVars = {
+const styleCssVars: CssVarsFrom<Contract.Visual> = {
   opacity: createVar(),
   backgroundColor: createVar(),
 }
 
-export const cssVars: CssVarsFrom<Contract.Config> = {
-  style: styleCssVars,
+export const cssVars: CssVarsFrom<Contract.Style> = {
+  visual: styleCssVars,
   layout: layoutCssVars,
 }
 
 export namespace Style {
-  export const divBox = style({
+  export const box = style({
     // Style
-    opacity: cssVars.style.opacity,
-    backgroundColor: cssVars.style.backgroundColor,
+    opacity: cssVars.visual.opacity,
+    backgroundColor: cssVars.visual.backgroundColor,
 
     // Layout
     width: cssVars.layout.base.size.width,
