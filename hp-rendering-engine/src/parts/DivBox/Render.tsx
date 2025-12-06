@@ -1,16 +1,17 @@
 import { Style } from './style.css'
 import { Contract } from './contract'
 import { assignInlineVars } from '@vanilla-extract/dynamic'
-import { CssVars } from './style.css'
+import { cssVars } from './style.css'
 import type { StyleConfigApplier } from '@parts/shared/styleConfigApplier'
 import { PartWithChildren } from '@parts/shared/partDefinition'
+import { splitProps } from 'solid-js'
 
 export const DivBox: PartWithChildren<Contract.Config> = props => {
-  const { children, ...config } = props
+  const [local, config] = splitProps(props, ["children"])
 
   return (
     <div class={Style.divBox} style={applyStyleConfig(config)}>
-      {children}
+      {local.children}
     </div>
   )
 }
@@ -23,41 +24,45 @@ export const applyStyleConfig: StyleConfigApplier<Contract.Config> = config => {
 
   return assignInlineVars({
     // Style
-    [CssVars.opacityVar]: String(config.style.opacity ?? 1),
-    [CssVars.backgroundColorVar]: config.style.backgroundColor || 'transparent',
+    [cssVars.style.opacity]: String(config.style.opacity ?? 1),
+    [cssVars.style.backgroundColor]: config.style.backgroundColor || 'transparent',
 
     // Layout
-    [CssVars.widthBaseVar]: px(base.size.width),
-    [CssVars.heightBaseVar]: px(base.size.height),
+    // base
+    [cssVars.layout.base.size.width]: px(base.size.width),
+    [cssVars.layout.base.size.height]: px(base.size.height),
 
-    [CssVars.topBaseVar]: px(base.position.top),
-    [CssVars.leftBaseVar]: px(base.position.left),
-    [CssVars.rightBaseVar]: px(base.position.right),
-    [CssVars.bottomBaseVar]: px(base.position.bottom),
+    [cssVars.layout.base.position.top]: px(base.position.top),
+    [cssVars.layout.base.position.left]: px(base.position.left),
+    [cssVars.layout.base.position.right]: px(base.position.right),
+    [cssVars.layout.base.position.bottom]: px(base.position.bottom),
 
-    [CssVars.widthSmVar]: px(sm?.size.width),
-    [CssVars.heightSmVar]: px(sm?.size.height),
+    // sm
+    [cssVars.layout.sm.size.width]: px(sm?.size.width),
+    [cssVars.layout.sm.size.height]: px(sm?.size.height),
 
-    [CssVars.topSmVar]: px(sm?.position.top),
-    [CssVars.leftSmVar]: px(sm?.position.left),
-    [CssVars.rightSmVar]: px(sm?.position.right),
-    [CssVars.bottomSmVar]: px(sm?.position.bottom),
+    [cssVars.layout.sm.position.top]: px(sm?.position.top),
+    [cssVars.layout.sm.position.left]: px(sm?.position.left),
+    [cssVars.layout.sm.position.right]: px(sm?.position.right),
+    [cssVars.layout.sm.position.bottom]: px(sm?.position.bottom),
 
-    [CssVars.widthMdVar]: px(md?.size.width),
-    [CssVars.heightMdVar]: px(md?.size.height),
+    // md
+    [cssVars.layout.md.size.width]: px(md?.size.width),
+    [cssVars.layout.md.size.height]: px(md?.size.height),
 
-    [CssVars.topMdVar]: px(md?.position.top),
-    [CssVars.leftMdVar]: px(md?.position.left),
-    [CssVars.rightMdVar]: px(md?.position.right),
-    [CssVars.bottomMdVar]: px(md?.position.bottom),
+    [cssVars.layout.md.position.top]: px(md?.position.top),
+    [cssVars.layout.md.position.left]: px(md?.position.left),
+    [cssVars.layout.md.position.right]: px(md?.position.right),
+    [cssVars.layout.md.position.bottom]: px(md?.position.bottom),
 
-    [CssVars.widthLgVar]: px(lg?.size.width),
-    [CssVars.heightLgVar]: px(lg?.size.height),
+    // lg
+    [cssVars.layout.lg.size.width]: px(lg?.size.width),
+    [cssVars.layout.lg.size.height]: px(lg?.size.height),
 
-    [CssVars.topLgVar]: px(lg?.position.top),
-    [CssVars.leftLgVar]: px(lg?.position.left),
-    [CssVars.rightLgVar]: px(lg?.position.right),
-    [CssVars.bottomLgVar]: px(lg?.position.bottom),
+    [cssVars.layout.lg.position.top]: px(lg?.position.top),
+    [cssVars.layout.lg.position.left]: px(lg?.position.left),
+    [cssVars.layout.lg.position.right]: px(lg?.position.right),
+    [cssVars.layout.lg.position.bottom]: px(lg?.position.bottom),
   })
 }
 

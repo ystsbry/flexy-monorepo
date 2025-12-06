@@ -1,82 +1,73 @@
 import { style, createVar } from '@vanilla-extract/css'
-import { mediaQuery } from '@parts/shared/responsive'
+import { CssVarsFrom, mediaQuery, responsiveCssVars } from '@parts/shared/responsive'
+import { Contract } from './contract'
 
-export namespace CssVars {
-  export const widthBaseVar = createVar()
-  export const heightBaseVar = createVar()
-  export const topBaseVar = createVar()
-  export const leftBaseVar = createVar()
-  export const rightBaseVar = createVar()
-  export const bottomBaseVar = createVar()
+const layoutCssVars = responsiveCssVars<Contract.Layout>({
+  size: {
+    width: createVar(),
+    height: createVar(),
+  },
+  position: {
+    top: createVar(),
+    left: createVar(),
+    right: createVar(),
+    bottom: createVar(),
+  },
+})
 
-  export const widthSmVar = createVar()
-  export const heightSmVar = createVar()
-  export const topSmVar = createVar()
-  export const leftSmVar = createVar()
-  export const rightSmVar = createVar()
-  export const bottomSmVar = createVar()
+const styleCssVars = {
+  opacity: createVar(),
+  backgroundColor: createVar(),
+}
 
-  export const widthMdVar = createVar()
-  export const heightMdVar = createVar()
-  export const topMdVar = createVar()
-  export const leftMdVar = createVar()
-  export const rightMdVar = createVar()
-  export const bottomMdVar = createVar()
-
-  export const widthLgVar = createVar()
-  export const heightLgVar = createVar()
-  export const topLgVar = createVar()
-  export const leftLgVar = createVar()
-  export const rightLgVar = createVar()
-  export const bottomLgVar = createVar()
-
-  export const opacityVar = createVar()
-  export const backgroundColorVar = createVar()
+export const cssVars: CssVarsFrom<Contract.Config> = {
+  style: styleCssVars,
+  layout: layoutCssVars,
 }
 
 export namespace Style {
   export const divBox = style({
     // Style
-    opacity: CssVars.opacityVar,
-    backgroundColor: CssVars.backgroundColorVar,
+    opacity: cssVars.style.opacity,
+    backgroundColor: cssVars.style.backgroundColor,
 
     // Layout
-    width: CssVars.widthBaseVar,
-    height: CssVars.heightBaseVar,
-
+    width: cssVars.layout.base.size.width,
+    height: cssVars.layout.base.size.height,
+  
     position: 'absolute',
-    top: CssVars.topBaseVar,
-    left: CssVars.leftBaseVar,
-    right: CssVars.rightBaseVar,
-    bottom: CssVars.bottomBaseVar,
-
+    top: cssVars.layout.base.position.top,
+    left: cssVars.layout.base.position.left,
+    right: cssVars.layout.base.position.right,
+    bottom: cssVars.layout.base.position.bottom,
+  
     '@media': {
       [mediaQuery.sm]: {
-        width: CssVars.widthSmVar,
-        height: CssVars.heightSmVar,
-
-        top: CssVars.topSmVar,
-        left: CssVars.leftSmVar,
-        right: CssVars.rightSmVar,
-        bottom: CssVars.bottomSmVar,
+        width: cssVars.layout.sm.size.width,
+        height: cssVars.layout.sm.size.height,
+  
+        top: cssVars.layout.sm.position.top,
+        left: cssVars.layout.sm.position.left,
+        right: cssVars.layout.sm.position.right,
+        bottom: cssVars.layout.sm.position.bottom,
       },
       [mediaQuery.md]: {
-        width: CssVars.widthMdVar,
-        height: CssVars.heightMdVar,
-
-        top: CssVars.topMdVar,
-        left: CssVars.leftMdVar,
-        right: CssVars.rightMdVar,
-        bottom: CssVars.bottomMdVar,
+        width: cssVars.layout.md.size.width,
+        height: cssVars.layout.md.size.height,
+  
+        top: cssVars.layout.md.position.top,
+        left: cssVars.layout.md.position.left,
+        right: cssVars.layout.md.position.right,
+        bottom: cssVars.layout.md.position.bottom,
       },
       [mediaQuery.lg]: {
-        width: CssVars.widthLgVar,
-        height: CssVars.heightLgVar,
-
-        top: CssVars.topLgVar,
-        left: CssVars.leftLgVar,
-        right: CssVars.rightLgVar,
-        bottom: CssVars.bottomLgVar,
+        width: cssVars.layout.lg.size.width,
+        height: cssVars.layout.lg.size.height,
+  
+        top: cssVars.layout.lg.position.top,
+        left: cssVars.layout.lg.position.left,
+        right: cssVars.layout.lg.position.right,
+        bottom: cssVars.layout.lg.position.bottom,
       },
     },
   })
