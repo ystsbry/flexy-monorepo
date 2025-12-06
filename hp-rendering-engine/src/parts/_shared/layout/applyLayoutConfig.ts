@@ -1,11 +1,11 @@
-import { px, Styles } from "../styleConfigApplier"
+import { px, Styles } from '../styleConfigApplier'
 import { assignInlineVars } from '@vanilla-extract/dynamic'
-import { Contract } from "./contract"
-import { ResponsiveCssVars } from "../responsive"
+import { Contract } from './contract'
+import { ResponsiveCssVars } from '../responsive'
 
 export type LayoutConfigApplier = (
   config: Contract.ResponsiveLayout,
-  cssVars: ResponsiveCssVars<Contract.Layout>
+  cssVars: ResponsiveCssVars<Contract.Layout>,
 ) => Styles
 
 export const applyLayoutConfig: LayoutConfigApplier = (config, cssVars) => {

@@ -1,6 +1,6 @@
-import { createVar, style } from "@vanilla-extract/css";
-import { Contract } from "@parts/shared/layout/contract";
-import { responsiveCssVars, mediaQuery } from "@parts/shared/responsive"
+import { createVar, style } from '@vanilla-extract/css'
+import { Contract } from '@parts/shared/layout/contract'
+import { responsiveCssVars, mediaQuery } from '@parts/shared/responsive'
 
 export const layoutCssVars = responsiveCssVars<Contract.Layout>({
   size: {
@@ -12,7 +12,7 @@ export const layoutCssVars = responsiveCssVars<Contract.Layout>({
     left: createVar(),
     right: createVar(),
     bottom: createVar(),
-  }
+  },
 })
 
 export const layoutStyle = style({
