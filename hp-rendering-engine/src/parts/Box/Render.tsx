@@ -2,11 +2,11 @@ import { Style } from './style.css'
 import { Contract } from './contract'
 import { assignInlineVars } from '@vanilla-extract/dynamic'
 import { cssVars } from './style.css'
-import { px, type StyleConfigApplier } from '@parts/shared/styleConfigApplier'
-import { PartWithChildren } from '@parts/shared/partDefinition'
+import { PartWithChildren, StyleConfigApplier } from '@parts/shared/partDefinition'
 import { splitProps } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import { wrapIf } from '@parts/shared/conditionalWrap'
+import { px } from '@parts/shared/styleHelpers'
 
 export const Box: PartWithChildren<Contract.Config> = props => {
   const [local, config] = splitProps(props, ['children'])

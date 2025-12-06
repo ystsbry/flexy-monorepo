@@ -1,6 +1,6 @@
 import { JSX, ParentProps } from 'solid-js'
-import type { ZodType } from 'zod'
 
+// render
 export type PartConfig = Record<string, unknown>
 
 export interface BasePartComponent<C extends PartConfig, HasChildren extends boolean = true> {
@@ -10,8 +10,9 @@ export interface BasePartComponent<C extends PartConfig, HasChildren extends boo
 export type PartWithChildren<C extends PartConfig> = BasePartComponent<C, true>
 export type PartWithoutChildren<C extends PartConfig> = BasePartComponent<C, false>
 
-export interface PartDefinition<C extends PartConfig, S extends ZodType<C>> {
-  type: string
-  schema: S
-  Component: BasePartComponent<C>
+// style
+export type Styles = {
+  [cssVarName: string]: string
 }
+
+export type StyleConfigApplier<C> = (config: C) => Styles
