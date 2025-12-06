@@ -44,6 +44,10 @@ const baseLayout: Contract.ResponsiveLayout = {
 
 export const Default: Story = {
   args: {
+    attribute: {
+      type: 'div',
+      isLinkEnabled: false,
+    },
     style: {
       visual: {
         opacity: 1,
@@ -57,6 +61,10 @@ export const Default: Story = {
 
 export const SemiTransparent: Story = {
   args: {
+    attribute: {
+      type: 'div',
+      isLinkEnabled: false,
+    },
     style: {
       visual: {
         opacity: 0.6,
@@ -70,6 +78,10 @@ export const SemiTransparent: Story = {
 
 export const ShiftedPosition: Story = {
   args: {
+    attribute: {
+      type: 'div',
+      isLinkEnabled: false,
+    },
     style: {
       visual: {
         opacity: 1,
