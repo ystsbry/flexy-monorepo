@@ -1,5 +1,5 @@
-import { createVar } from '@vanilla-extract/css'
 import { z } from 'zod'
+import { CssVarsFrom } from './partDefinition'
 
 export const breakpoints = ['base', 'sm', 'md', 'lg'] as const
 export type Breakpoint = (typeof breakpoints)[number]
@@ -28,12 +28,6 @@ export const responsiveZodSchema = <T extends z.ZodType>(schema: T) =>
     md: schema.optional(),
     lg: schema.optional(),
   })
-
-export type CssVarsFrom<T extends Record<string, unknown>> = {
-  [K in keyof T]-?: NonNullable<T[K]> extends Record<string, unknown>
-    ? CssVarsFrom<NonNullable<T[K]>>
-    : ReturnType<typeof createVar>
-}
 
 export type ResponsiveCssVars<T extends Record<string, unknown>> = {
   base: CssVarsFrom<T>
