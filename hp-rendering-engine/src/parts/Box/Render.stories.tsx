@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite'
-import { DivBox } from './Render'
+import { Box } from './Render'
 import type { Contract } from './contract'
 
-const meta: Meta<typeof DivBox> = {
-  title: 'layout/DivBox',
-  component: DivBox,
+const meta: Meta<typeof Box> = {
+  title: 'layout/Box',
+  component: Box,
 }
 
 export default meta
 
-type Story = StoryObj<typeof DivBox>
+type Story = StoryObj<typeof Box>
 
-const baseLayout: Contract.Config['layout'] = {
+const baseLayout: Contract.ResponsiveLayout = {
   base: {
     size: {
       width: 240,
@@ -45,10 +45,12 @@ const baseLayout: Contract.Config['layout'] = {
 export const Default: Story = {
   args: {
     style: {
-      opacity: 1,
-      backgroundColor: '#fee2e2',
+      visual: {
+        opacity: 1,
+        backgroundColor: '#fee2e2',
+      },
+      layout: baseLayout,
     },
-    layout: baseLayout,
     children: <p>DivBox content</p>,
   } satisfies Contract.Config & { children: any },
 }
@@ -56,10 +58,12 @@ export const Default: Story = {
 export const SemiTransparent: Story = {
   args: {
     style: {
-      opacity: 0.6,
-      backgroundColor: '#bfdbfe',
+      visual: {
+        opacity: 0.6,
+        backgroundColor: '#bfdbfe',
+      },
+      layout: baseLayout,
     },
-    layout: baseLayout,
     children: <p>"Semi transparent DivBox"</p>,
   } satisfies Contract.Config & { children: any },
 }
@@ -67,14 +71,16 @@ export const SemiTransparent: Story = {
 export const ShiftedPosition: Story = {
   args: {
     style: {
-      opacity: 1,
-      backgroundColor: '#dcfce7',
-    },
-    layout: {
-      ...baseLayout,
-      base: {
-        ...baseLayout.base,
-        position: { top: 120, left: 160, right: 0, bottom: 0 },
+      visual: {
+        opacity: 1,
+        backgroundColor: '#dcfce7',
+      },
+      layout: {
+        ...baseLayout,
+        base: {
+          ...baseLayout.base,
+          position: { top: 120, left: 160, right: 0, bottom: 0 },
+        },
       },
     },
     children: <p>"Shifted DivBox"</p>,
