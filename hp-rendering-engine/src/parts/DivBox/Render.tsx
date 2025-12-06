@@ -7,7 +7,7 @@ import { PartWithChildren } from '@parts/shared/partDefinition'
 import { splitProps } from 'solid-js'
 
 export const DivBox: PartWithChildren<Contract.Config> = props => {
-  const [local, config] = splitProps(props, ["children"])
+  const [local, config] = splitProps(props, ['children'])
 
   return (
     <div class={Style.divBox} style={applyStyleConfig(config)}>

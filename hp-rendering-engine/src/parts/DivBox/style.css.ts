@@ -34,18 +34,18 @@ export namespace Style {
     // Layout
     width: cssVars.layout.base.size.width,
     height: cssVars.layout.base.size.height,
-  
+
     position: 'absolute',
     top: cssVars.layout.base.position.top,
     left: cssVars.layout.base.position.left,
     right: cssVars.layout.base.position.right,
     bottom: cssVars.layout.base.position.bottom,
-  
+
     '@media': {
       [mediaQuery.sm]: {
         width: cssVars.layout.sm.size.width,
         height: cssVars.layout.sm.size.height,
-  
+
         top: cssVars.layout.sm.position.top,
         left: cssVars.layout.sm.position.left,
         right: cssVars.layout.sm.position.right,
@@ -54,7 +54,7 @@ export namespace Style {
       [mediaQuery.md]: {
         width: cssVars.layout.md.size.width,
         height: cssVars.layout.md.size.height,
-  
+
         top: cssVars.layout.md.position.top,
         left: cssVars.layout.md.position.left,
         right: cssVars.layout.md.position.right,
@@ -63,7 +63,7 @@ export namespace Style {
       [mediaQuery.lg]: {
         width: cssVars.layout.lg.size.width,
         height: cssVars.layout.lg.size.height,
-  
+
         top: cssVars.layout.lg.position.top,
         left: cssVars.layout.lg.position.left,
         right: cssVars.layout.lg.position.right,
