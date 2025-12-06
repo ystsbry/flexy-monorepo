@@ -1,4 +1,4 @@
-import { Style } from './style.css'
+import { styleRule } from './style.css'
 import { Contract } from './contract'
 import { assignInlineVars } from '@vanilla-extract/dynamic'
 import { cssVars } from './style.css'
@@ -15,13 +15,13 @@ export const Box: PartWithChildren<Contract.Config> = props => {
   const hasLink = typeof config.attribute.link === 'string'
 
   const maybeLink = wrapIf(config.attribute.isLinkEnabled && hasLink, children => (
-    <a href={config.attribute.link} class={Style.box} style={applyStyleConfig(config.style)}>
+    <a href={config.attribute.link} class={styleRule} style={applyStyleConfig(config.style)}>
       {children}
     </a>
   ))
 
   return maybeLink(
-    <Dynamic component={tag} class={Style.box} style={applyStyleConfig(config.style)}>
+    <Dynamic component={tag} class={styleRule} style={applyStyleConfig(config.style)}>
       {local.children}
     </Dynamic>,
   )
