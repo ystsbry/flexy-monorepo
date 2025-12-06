@@ -11,28 +11,24 @@ export const Box: PartWithChildren<Contract.Config> = props => {
   const [local, config] = splitProps(props, ['children'])
 
   const tag = config.attribute.type
-  const hasLink = typeof config.attribute.link === "string"
+  const hasLink = typeof config.attribute.link === 'string'
 
-  const maybeLink = wrapIf(
-    config.attribute.isLinkEnabled && hasLink,
-    children => (
-      <a href={config.attribute.link} class={Style.box} style={applyStyleConfig(config.style)}>
-        {children}
-      </a>
-    )
-  )
+  const maybeLink = wrapIf(config.attribute.isLinkEnabled && hasLink, children => (
+    <a href={config.attribute.link} class={Style.box} style={applyStyleConfig(config.style)}>
+      {children}
+    </a>
+  ))
 
   return maybeLink(
     <Dynamic component={tag} class={Style.box} style={applyStyleConfig(config.style)}>
       {local.children}
-    </Dynamic>
+    </Dynamic>,
   )
 }
 
 const wrapIf =
-  (cond: boolean, wrapper: (children: JSX.Element) => JSX.Element) =>
-  (children: JSX.Element) =>
-    cond ? wrapper(children) : children;
+  (cond: boolean, wrapper: (children: JSX.Element) => JSX.Element) => (children: JSX.Element) =>
+    cond ? wrapper(children) : children
 
 export const applyStyleConfig: StyleConfigApplier<Contract.Style> = style => {
   const base = style.layout.base
