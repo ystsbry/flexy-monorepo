@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { responsiveZodSchema } from '@parts/shared/responsive'
 import { Refinement, rulesRegister } from '@src/configure/contract'
+import { linkSchema } from '@parts/_shared/linkContract'
 
 export namespace Contract {
   export const VisualSchema = z.object({
@@ -75,23 +76,10 @@ export namespace Contract {
   })
   export type Style = z.infer<typeof StyleSchema>
 
-  const attributeRules: Refinement<Attribute>[] = [
-    {
-      rule: (arg: Attribute) => !(arg.isLinkEnabled && typeof arg.link === 'string'),
-      issue: {
-        code: 'custom',
-        message: 'Link is enabled but link URL is not provided',
-      },
-    },
-  ]
-
-  export const attributeSchema = z
-    .object({
-      type: z.enum(['div', 'main', 'section', 'article', 'header', 'footer']),
-      isLinkEnabled: z.boolean(),
-      link: z.url().optional(),
-    })
-    .superRefine(rulesRegister(attributeRules))
+  export const attributeSchema = z.object({
+    type: z.enum(['div', 'main', 'section', 'article', 'header', 'footer']),
+    link: linkSchema,
+  })
   export type Attribute = z.infer<typeof attributeSchema>
 
   export const ConfigSchema = z.object({

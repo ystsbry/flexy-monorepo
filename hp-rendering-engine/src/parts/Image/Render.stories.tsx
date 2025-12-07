@@ -1,9 +1,11 @@
+// src/parts/Image/Render.stories.tsx （パスはプロジェクト構成に合わせてください）
 import type { Meta, StoryObj } from 'storybook-solidjs-vite'
 import { Render } from './Render'
 import type { Contract } from './contract'
+import { BoxContract } from '@parts/Box'
 
 const meta: Meta<typeof Render> = {
-  title: 'layout/Box',
+  title: 'layout/Image',
   component: Render,
 }
 
@@ -11,7 +13,7 @@ export default meta
 
 type Story = StoryObj<typeof Render>
 
-const baseLayout: Contract.ResponsiveLayout = {
+const baseLayout: BoxContract.ResponsiveLayout = {
   base: {
     size: {
       width: 240,
@@ -45,62 +47,63 @@ const baseLayout: Contract.ResponsiveLayout = {
 export const Default: Story = {
   args: {
     attribute: {
-      type: 'div',
+      src: '/image.png',
+      alt: 'Default image',
+      loading: 'eager',
+      decoding: 'auto',
+      fetchpriority: 'auto',
       link: {
         isEnabled: false,
       },
     },
     style: {
-      visual: {
-        opacity: 1,
-        backgroundColor: '#fee2e2',
-      },
+      visual: {},
       layout: baseLayout,
     },
-    children: <p>DivBox content</p>,
-  } satisfies Contract.Config & { children: any },
+  } satisfies Contract.Config,
 }
 
-export const SemiTransparent: Story = {
+export const WithLink: Story = {
   args: {
     attribute: {
-      type: 'div',
+      src: '/image.png',
+      alt: 'Linked image',
+      loading: 'lazy',
+      decoding: 'async',
+      fetchpriority: 'high',
       link: {
-        isEnabled: false,
+        isEnabled: true,
+        url: 'https://example.com',
       },
     },
     style: {
-      visual: {
-        opacity: 0.6,
-        backgroundColor: '#bfdbfe',
-      },
+      visual: {},
       layout: baseLayout,
     },
-    children: <p>"Semi transparent DivBox"</p>,
-  } satisfies Contract.Config & { children: any },
+  } satisfies Contract.Config,
 }
 
-export const ShiftedPosition: Story = {
+export const LazyLoading: Story = {
   args: {
     attribute: {
-      type: 'div',
+      src: '/image.png',
+      alt: 'Lazy loaded image',
+      loading: 'lazy',
+      decoding: 'async',
+      fetchpriority: 'low',
       link: {
         isEnabled: false,
       },
     },
     style: {
-      visual: {
-        opacity: 1,
-        backgroundColor: '#dcfce7',
-      },
+      visual: {},
       layout: {
         ...baseLayout,
         base: {
           ...baseLayout.base,
-          position: { top: 120, left: 160, right: 0, bottom: 0 },
+          position: { top: 120, left: 160 },
         },
       },
     },
-    children: <p>"Shifted DivBox"</p>,
-  } satisfies Contract.Config & { children: any },
+  } satisfies Contract.Config,
 }

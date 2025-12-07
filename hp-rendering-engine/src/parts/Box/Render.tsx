@@ -8,14 +8,14 @@ import { Dynamic } from 'solid-js/web'
 import { wrapIf } from '@parts/shared/conditionalWrap'
 import { px } from '@parts/shared/styleHelpers'
 
-export const Box: PartWithChildren<Contract.Config> = props => {
+export const Render: PartWithChildren<Contract.Config> = props => {
   const [local, config] = splitProps(props, ['children'])
 
   const tag = config.attribute.type
   const hasLink = typeof config.attribute.link === 'string'
 
-  const maybeLink = wrapIf(config.attribute.isLinkEnabled && hasLink, children => (
-    <a href={config.attribute.link} class={styleRule} style={applyStyleConfig(config.style)}>
+  const maybeLink = wrapIf(config.attribute.link.isEnabled && hasLink, children => (
+    <a href={config.attribute.link.url} class={styleRule} style={applyStyleConfig(config.style)}>
       {children}
     </a>
   ))
