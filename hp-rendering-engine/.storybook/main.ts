@@ -16,6 +16,7 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-onboarding',
   ],
+  staticDirs: ['../asset'],
   async viteFinal(baseConfig) {
     const root = process.cwd();
 
