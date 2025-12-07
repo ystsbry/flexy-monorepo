@@ -2,7 +2,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic'
 import { boxConfigFactory, BoxRender } from '@parts/Box'
 import { Contract } from './contract'
 import { PartWithoutChildren, StyleConfigApplier } from '@parts/shared/partDefinition'
-import { cssVars } from './style.css'
+import { cssVars, styleRule } from './style.css'
 import { px } from '@parts/shared/styleHelpers'
 
 export const Render: PartWithoutChildren<Contract.Config> = props => {
@@ -21,6 +21,7 @@ export const Render: PartWithoutChildren<Contract.Config> = props => {
         loading={imageAttr.loading}
         decoding={imageAttr.decoding}
         fetchpriority={imageAttr.fetchpriority}
+        class={styleRule}
         style={applyStyleConfig(props.style)}
       />
     </BoxRender>
