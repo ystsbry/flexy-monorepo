@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from 'storybook-solidjs-vite'
-import { Box } from './Render'
+import { Render } from './Render'
 import type { Contract } from './contract'
 
-const meta: Meta<typeof Box> = {
+const meta: Meta<typeof Render> = {
   title: 'layout/Box',
-  component: Box,
+  component: Render,
 }
 
 export default meta
 
-type Story = StoryObj<typeof Box>
+type Story = StoryObj<typeof Render>
 
 const baseLayout: Contract.ResponsiveLayout = {
   base: {
@@ -46,7 +46,9 @@ export const Default: Story = {
   args: {
     attribute: {
       type: 'div',
-      isLinkEnabled: false,
+      link: {
+        isEnabled: false,
+      },
     },
     style: {
       visual: {
@@ -63,7 +65,9 @@ export const SemiTransparent: Story = {
   args: {
     attribute: {
       type: 'div',
-      isLinkEnabled: false,
+      link: {
+        isEnabled: false,
+      },
     },
     style: {
       visual: {
@@ -80,7 +84,9 @@ export const ShiftedPosition: Story = {
   args: {
     attribute: {
       type: 'div',
-      isLinkEnabled: false,
+      link: {
+        isEnabled: false,
+      },
     },
     style: {
       visual: {

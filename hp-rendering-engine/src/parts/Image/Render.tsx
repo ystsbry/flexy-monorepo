@@ -1,29 +1,29 @@
-import { styleRule } from './style.css'
-import { Contract } from './contract'
 import { assignInlineVars } from '@vanilla-extract/dynamic'
+import { boxConfigFactory, BoxRender } from '@parts/Box'
+import { Contract } from './contract'
+import { PartWithoutChildren, StyleConfigApplier } from '@parts/shared/partDefinition'
 import { cssVars } from './style.css'
-import { PartWithChildren, StyleConfigApplier } from '@parts/shared/partDefinition'
-import { splitProps } from 'solid-js'
-import { Dynamic } from 'solid-js/web'
-import { wrapIf } from '@parts/shared/conditionalWrap'
 import { px } from '@parts/shared/styleHelpers'
 
-export const Render: PartWithChildren<Contract.Config> = props => {
-  const [local, config] = splitProps(props, ['children'])
+export const Render: PartWithoutChildren<Contract.Config> = props => {
+  const boxConfig = boxConfigFactory({
+    link: props.attribute.link,
+    layout: props.style.layout,
+  })
 
-  const tag = config.attribute.type
-  const hasLink = typeof config.attribute.link === 'string'
+  const imageAttr = props.attribute
 
-  const maybeLink = wrapIf(config.attribute.link.isEnabled && hasLink, children => (
-    <a href={config.attribute.link.url} class={styleRule} style={applyStyleConfig(config.style)}>
-      {children}
-    </a>
-  ))
-
-  return maybeLink(
-    <Dynamic component={tag} class={styleRule} style={applyStyleConfig(config.style)}>
-      {local.children}
-    </Dynamic>,
+  return (
+    <BoxRender {...boxConfig}>
+      <img
+        src={imageAttr.src}
+        alt={imageAttr.alt}
+        loading={imageAttr.loading}
+        decoding={imageAttr.decoding}
+        fetchpriority={imageAttr.fetchpriority}
+        style={applyStyleConfig(props.style)}
+      />
+    </BoxRender>
   )
 }
 
@@ -34,9 +34,13 @@ export const applyStyleConfig: StyleConfigApplier<Contract.Style> = style => {
   const lg = style.layout.lg
 
   return assignInlineVars({
-    // Style
-    [cssVars.visual.opacity]: String(style.visual.opacity ?? 1),
-    [cssVars.visual.backgroundColor]: style.visual.backgroundColor || 'transparent',
+    // style
+
+    // fixed Style
+    [cssVars.visual.width]: '100%',
+    [cssVars.visual.height]: '100%',
+    [cssVars.visual.objectFit]: 'cover',
+    [cssVars.visual.display]: 'block',
 
     // Layout
     // base

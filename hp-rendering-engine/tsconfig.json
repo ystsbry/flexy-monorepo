@@ -19,6 +19,7 @@
     "paths": {
       "@configure": ["./src/configure"],
       "@parts": ["./src/parts"],
+      "@parts/*": ["./src/parts/*"],
       "@parts/shared/*": ["./src/parts/_shared/*"],
       "@src/*": ["./src/*"]
     }
