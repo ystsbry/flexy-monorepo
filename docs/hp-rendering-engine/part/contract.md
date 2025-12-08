@@ -10,7 +10,7 @@
 実線の矢印は「Zod スキーマから TypeScript 型が導出される」関係を、
 破線の矢印は「あるスキーマが別のスキーマに依存している（内部で参照している / それを元に構成されている）」関係を表します。
 
-![part-contract](./images/parts/contract.png)
+![part-contract](../images/parts/contract.png)
 
 ## 1. ルート設定: configSchema / config
 
