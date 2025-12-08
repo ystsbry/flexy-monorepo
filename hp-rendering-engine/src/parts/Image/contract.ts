@@ -28,7 +28,6 @@ export namespace Contract {
 
   export const cssSchema = z.object({
     visual: visualCssSchema,
-    layout: BoxContract.ResponsiveLayoutSchema,
   })
   export type Css = z.infer<typeof cssSchema>
 
