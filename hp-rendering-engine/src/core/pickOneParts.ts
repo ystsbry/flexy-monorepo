@@ -3,7 +3,6 @@ import { JSX } from 'solid-js'
 
 type PartRenderer = {
   blockId: string
-  partId: string
   render: () => JSX.Element
 }
 
@@ -14,7 +13,6 @@ export const pickOneParts = (parts: PartContract.Part[]): PartRenderer[] =>
         const renderFn = partsRenderMap.box
         return {
           blockId: part.blockId,
-          partId: part.id,
           render: () => renderFn(part.config),
         }
       }
@@ -22,7 +20,6 @@ export const pickOneParts = (parts: PartContract.Part[]): PartRenderer[] =>
         const renderFn = partsRenderMap.image
         return {
           blockId: part.blockId,
-          partId: part.id,
           render: () => renderFn(part.config),
         }
       }
