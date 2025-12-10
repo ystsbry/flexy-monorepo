@@ -82,9 +82,9 @@ export namespace Contract {
   })
   export type Attribute = z.infer<typeof attributeSchema>
 
-  export const ConfigSchema = z.object({
+  export const configSchema = z.object({
     attribute: attributeSchema,
     style: StyleSchema,
   })
-  export type Config = z.infer<typeof ConfigSchema>
+  export type Config = z.infer<typeof configSchema>
 }
