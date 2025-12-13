@@ -25,5 +25,5 @@
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "./dev"]
+  "exclude": ["node_modules", "dist", "./playground"]
 }
