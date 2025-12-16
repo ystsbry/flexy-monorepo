@@ -1,0 +1,11 @@
+{
+  "root": false,
+  "extends": ["../.eslintrc"],
+  "rules": {},
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": ".",
+    "sourceType": "module"
+  },
+  "ignorePatterns": [".output", ".vinxi", "node_modules"]
+}

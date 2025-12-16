@@ -6,7 +6,10 @@
     "build": "vinxi build",
     "start": "vinxi start",
     "version": "vinxi version",
-    "lint:types": "tsc --noEmit"
+    "lint:types": "tsc --noEmit",
+    "lint:code": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.{js,ts,tsx,jsx}",
+    "format": "prettier --ignore-path .gitignore -w \"src/**/*.{js,ts,json,css,tsx,jsx}\"",
+    "format:check": "prettier --check  --ignore-path .gitignore \"src/**/*.{js,ts,json,css,tsx,jsx}\""
   },
   "dependencies": {
     "hp-rendering-engine": "workspace:*",
