@@ -3,7 +3,7 @@
   "extends": ["../.eslintrc"],
   "rules": {},
   "parserOptions": {
-    "project": "./tsconfig.json",
+    "project": ["./tsconfig.json", "./playground/tsconfig.json"],
     "tsconfigRootDir": ".",
     "sourceType": "module"
   },
