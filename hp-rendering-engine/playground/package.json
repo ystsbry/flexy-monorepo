@@ -12,14 +12,20 @@
     "format:check": "prettier --check  --ignore-path .gitignore \"src/**/*.{js,ts,json,css,tsx,jsx}\""
   },
   "dependencies": {
-    "hp-rendering-engine": "workspace:*",
     "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.15.0",
     "@solidjs/start": "^1.1.0",
+    "hp-rendering-engine": "workspace:*",
     "solid-js": "^1.9.5",
     "vinxi": "^0.5.7"
   },
   "engines": {
     "node": ">=22"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
   }
 }
